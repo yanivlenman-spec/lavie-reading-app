@@ -413,13 +413,12 @@ export default function StoryScreen() {
 
       {/* TOP: Illustration or Episode Image */}
       {story.image ? (
-        <View style={{ paddingHorizontal: 16, paddingVertical: 12, backgroundColor: '#fafafa' }}>
-          <View style={{ borderRadius: 16, overflow: 'hidden' }}>
-            <ImageBackground
-              source={story.image}
-              style={{ width: '100%', height: 420, backgroundColor: '#f5f0eb' }}
-              imageStyle={{ resizeMode: 'cover' }}
-            >
+        <View style={{ borderRadius: 16, overflow: 'hidden', marginHorizontal: 16, marginVertical: 12 }}>
+          <ImageBackground
+            source={story.image}
+            style={{ width: '100%', height: 420 }}
+            imageStyle={{ resizeMode: 'cover' }}
+          >
               <LinearGradient
                 colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.2)']}
                 start={{ x: 0, y: 0 }}
@@ -428,7 +427,6 @@ export default function StoryScreen() {
               />
             </ImageBackground>
           </View>
-        </View>
       ) : (
         <View style={{ height: '38%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', overflow: 'hidden' }}>
           <Illustration width={360} height={220} />
