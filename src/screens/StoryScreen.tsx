@@ -9,6 +9,7 @@ import {
   Platform,
   ImageBackground,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -413,11 +414,20 @@ export default function StoryScreen() {
       {/* TOP: Illustration or Episode Image */}
       {story.image ? (
         <View style={{ paddingHorizontal: 16, paddingVertical: 12, backgroundColor: '#fafafa' }}>
-          <ImageBackground
-            source={story.image}
-            style={{ width: '100%', height: 300, backgroundColor: '#f5f0eb', borderRadius: 16, overflow: 'hidden' }}
-            imageStyle={{ resizeMode: 'contain' }}
-          />
+          <View style={{ borderRadius: 16, overflow: 'hidden' }}>
+            <ImageBackground
+              source={story.image}
+              style={{ width: '100%', height: 300, backgroundColor: '#f5f0eb' }}
+              imageStyle={{ resizeMode: 'cover' }}
+            >
+              <LinearGradient
+                colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0)', 'rgba(0,0,0,0.2)']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ flex: 1, pointerEvents: 'none' }}
+              />
+            </ImageBackground>
+          </View>
         </View>
       ) : (
         <View style={{ height: '38%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff', overflow: 'hidden' }}>
