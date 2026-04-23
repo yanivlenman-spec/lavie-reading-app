@@ -417,7 +417,7 @@ export default function StoryScreen() {
           <View style={{ borderRadius: 16, overflow: 'hidden' }}>
             <ImageBackground
               source={story.image}
-              style={{ width: '100%', height: 300, backgroundColor: '#f5f0eb' }}
+              style={{ width: '100%', height: 420, backgroundColor: '#f5f0eb' }}
               imageStyle={{ resizeMode: 'cover' }}
             >
               <LinearGradient
