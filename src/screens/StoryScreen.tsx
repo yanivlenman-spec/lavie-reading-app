@@ -8,6 +8,7 @@ import {
   Easing,
   Platform,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -174,6 +175,22 @@ export default function StoryScreen() {
 
   const wordPulse = useRef(new Animated.Value(1)).current;
   const hintIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // ── Responsive image container height (maintains aspect ratio) ─────────────
+  const [imageContainerHeight, setImageContainerHeight] = useState(() => {
+    const width = Dimensions.get('window').width - 32; // subtract margins
+    return (width * 9) / 16; // 16:9 aspect ratio for responsive framing
+  });
+
+  useEffect(() => {
+    const handleDimensionChange = ({ window }: any) => {
+      const width = window.width - 32;
+      setImageContainerHeight((width * 9) / 16);
+    };
+
+    const subscription = Dimensions.addEventListener('change', handleDimensionChange);
+    return () => subscription?.remove();
+  }, []);
 
   // ── Pulse animation ────────────────────────────────────────────────────────
   useEffect(() => {
@@ -416,7 +433,7 @@ export default function StoryScreen() {
         <View style={{ borderRadius: 16, overflow: 'hidden', marginHorizontal: 16, marginVertical: 12 }}>
           <ImageBackground
             source={story.image}
-            style={{ width: '100%', height: 420 }}
+            style={{ width: '100%', height: imageContainerHeight }}
             imageStyle={{ resizeMode: 'cover' }}
           >
               <LinearGradient
