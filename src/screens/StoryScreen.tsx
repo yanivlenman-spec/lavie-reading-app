@@ -176,16 +176,23 @@ export default function StoryScreen() {
   const wordPulse = useRef(new Animated.Value(1)).current;
   const hintIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // ── Responsive image container height (maintains aspect ratio) ─────────────
+  // ── Orientation-aware image container (crops sides in portrait, top/bottom in landscape) ──
   const [imageContainerHeight, setImageContainerHeight] = useState(() => {
-    const width = Dimensions.get('window').width - 32; // subtract margins
-    return (width * 9) / 16; // 16:9 aspect ratio for responsive framing
+    const window = Dimensions.get('window');
+    const isLandscape = window.width > window.height;
+    // Landscape: narrower, taller frame (crops top/bottom of wide image)
+    // Portrait: wider, shorter frame (crops sides of wide image)
+    const width = isLandscape ? window.width * 0.5 : window.width - 32;
+    const aspectRatio = isLandscape ? 9 / 16 : 16 / 5; // landscape is tall, portrait is wide
+    return width * aspectRatio;
   });
 
   useEffect(() => {
     const handleDimensionChange = ({ window }: any) => {
-      const width = window.width - 32;
-      setImageContainerHeight((width * 9) / 16);
+      const isLandscape = window.width > window.height;
+      const width = isLandscape ? window.width * 0.5 : window.width - 32;
+      const aspectRatio = isLandscape ? 9 / 16 : 16 / 5;
+      setImageContainerHeight(width * aspectRatio);
     };
 
     const subscription = Dimensions.addEventListener('change', handleDimensionChange);
