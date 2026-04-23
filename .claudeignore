@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Native build folders
+ios/
+android/
+
+# Expo & build output
+.expo/
+dist/
+
+# Binary assets
+assets/images/
+assets/audio/
+
+# Lock files & logs
+package-lock.json
+yarn.lock
+*.log
+
+# Git & system
+.git/
+.DS_Store
+
+# Environment
+.env
+.env.*

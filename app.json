@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "הרפתקת הקריאה של לביא",
+    "slug": "lavie-reading-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFDE7"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.lavie.reading",
+      "infoPlist": {
+        "NSSpeechRecognitionUsageDescription": "האפליקציה צריכה גישה לזיהוי קול כדי לעקוב אחרי הקריאה של לביא",
+        "NSMicrophoneUsageDescription": "האפליקציה צריכה גישה למיקרופון כדי לשמוע את הקריאה של לביא"
+      }
+    },
+    "android": {
+      "package": "com.lavie.reading",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFDE7"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    }
+  }
+}
